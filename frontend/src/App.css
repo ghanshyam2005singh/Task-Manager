@@ -15,12 +15,7 @@
 
 .App-header {
   background-color: #282c34;
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
+  padding: 20px;
   color: white;
 }
 
@@ -35,4 +30,55 @@
   to {
     transform: rotate(360deg);
   }
+}
+
+/* Custom styles for Task Manager */
+.task-card {
+  transition: transform 0.2s ease-in-out, box-shadow 0.2s ease-in-out;
+}
+
+.task-card:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+}
+
+.fab-container {
+  position: fixed;
+  bottom: 16px;
+  right: 16px;
+  z-index: 1000;
+}
+
+.header-logo {
+  cursor: pointer;
+  user-select: none;
+}
+
+.stats-card {
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.task-item {
+  border-left: 4px solid transparent;
+  transition: border-color 0.2s ease-in-out;
+}
+
+.task-item.pending {
+  border-left-color: #9e9e9e;
+}
+
+.task-item.in-progress {
+  border-left-color: #2196f3;
+}
+
+.task-item.completed {
+  border-left-color: #4caf50;
+}
+
+.task-item.overdue {
+  border-left-color: #f44336;
+  background-color: rgba(244, 67, 54, 0.05);
 }
