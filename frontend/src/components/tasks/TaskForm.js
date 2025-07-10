@@ -164,25 +164,24 @@ const TaskForm = ({ open, task, onClose, onSubmit }) => {
           <Box mt={2}>
             <LocalizationProvider dateAdapter={AdapterDateFns}>
               <Controller
-                name="dueDate"
-                control={control}
-                render={({ field }) => (
-                  <DatePicker
-                    label="Due Date"
-                    value={field.value}
-                    onChange={field.onChange}
-                    renderInput={(params) => (
-                      <TextField
-                        {...params}
-                        fullWidth
-                        error={!!errors.dueDate}
-                        helperText={errors.dueDate?.message}
-                      />
-                    )}
-                    minDate={new Date()}
-                  />
-                )}
-              />
+  name="dueDate"
+  control={control}
+  render={({ field }) => (
+    <DatePicker
+      label="Due Date"
+      value={field.value}
+      onChange={field.onChange}
+      slotProps={{
+        textField: {
+          fullWidth: true,
+          error: !!errors.dueDate,
+          helperText: errors.dueDate?.message,
+        }
+      }}
+      minDate={new Date()}
+    />
+  )}
+/>
             </LocalizationProvider>
           </Box>
         </Box>
