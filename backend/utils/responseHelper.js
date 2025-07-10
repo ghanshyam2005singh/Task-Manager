@@ -1,4 +1,3 @@
-// filepath: c:\Users\Pramod\Desktop\to-do\backend\utils\responseHelper.js
 const sendSuccessResponse = (res, message, data = null, statusCode = 200) => {
   const response = {
     success: true,
