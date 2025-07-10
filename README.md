@@ -149,34 +149,48 @@ npm install
 
 4. **Environment Setup**
 
-Create `.env` file in the backend directory:
-```env
-NODE_ENV=development
-PORT=5000
-MONGODB_URI=mongodb://localhost:27017/taskmanager
-JWT_SECRET=your_jwt_secret_key_here
-JWT_EXPIRE=7d
-BCRYPT_SALT_ROUNDS=12
-```
+- Copy `.env.example` to `.env` in both `backend` and `frontend` directories and fill in the required values.
 
-Create `.env` file in the frontend directory:
-```env
-REACT_APP_API_URL=http://localhost:5000/api
-```
+    **Backend `.env.example`:**
+    ```env
+    NODE_ENV=development
+    PORT=5000
+    MONGODB_URI=your_mongodb_connection_string
+    JWT_SECRET=your_jwt_secret_key
+    JWT_EXPIRE=7d
+    BCRYPT_SALT_ROUNDS=12
+    RATE_LIMIT_WINDOW_MS=900000
+    RATE_LIMIT_MAX_REQUESTS=100
+    ```
 
-5. **Start the Application**
+    **Frontend `.env.example`:**
+    ```env
+    REACT_APP_API_URL=http://localhost:5000/api
+    REACT_APP_APP_NAME=Task Manager
+    GENERATE_SOURCEMAP=false
+    ```
 
-Backend (from backend directory):
-```bash
-npm run dev
-```
+5. **Build the Frontend**
+    ```bash
+    cd frontend
+    npm run build
+    ```
 
-Frontend (from frontend directory):
-```bash
-npm start
-```
+6. **Start the Application**
 
-The backend will run on `http://localhost:5000` and frontend on `http://localhost:3000`.
+    **Backend (from backend directory):**
+    ```bash
+    npm run dev
+    ```
+
+    **Frontend (for development, from frontend directory):**
+    ```bash
+    npm start
+    ```
+
+    The backend will run on `http://localhost:5000` and frontend on `http://localhost:3000`.
+
+---
 
 ## 📚 API Endpoints
 
@@ -191,6 +205,7 @@ The backend will run on `http://localhost:5000` and frontend on `http://localhos
 - `PUT /api/tasks/:id` - Update task (protected)
 - `DELETE /api/tasks/:id` - Delete task (protected)
 - `GET /api/tasks/:id` - Get specific task (protected)
+- `GET /api/tasks/stats` - Get task statistics (protected)
 
 ## 🔐 Security Features
 
@@ -236,6 +251,11 @@ cd frontend
 npm test
 ```
 
+copy env file
+```bash
+cp .env.example .env
+```
+
 ## 🤝 Contributing
 
 1. Fork the repository
@@ -251,8 +271,8 @@ This project is licensed under the MIT License.
 ## 👨‍💻 Author
 
 **Ghanshyam Singh**
-- GitHub: [@yourgithub](https://github.com/yourgithub)
-- Email: your.email@example.com
+- GitHub: [@ghanshyam2005singh](https://github.com/ghanshyam2005singh)
+- Email: ghanshyam2005singh@gmail.com
 
 ## 🙏 Acknowledgments
 
