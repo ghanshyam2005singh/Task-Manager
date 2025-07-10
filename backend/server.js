@@ -3,6 +3,7 @@ const cors = require('cors');
 const helmet = require('helmet');
 const morgan = require('morgan');
 const cookieParser = require('cookie-parser');
+const path = require('path');
 require('express-async-errors');
 require('dotenv').config();
 
@@ -33,7 +34,7 @@ app.use(cookieParser());
 // Rate limiting
 app.use('/api', rateLimiter);
 
-// Routes
+// API Routes
 app.use('/api/auth', authRoutes);
 app.use('/api/tasks', taskRoutes);
 
@@ -46,12 +47,19 @@ app.get('/api/health', (req, res) => {
   });
 });
 
-// 404 handler
-app.use('*', (req, res) => {
-  res.status(404).json({
-    success: false,
-    message: `Route ${req.originalUrl} not found`
-  });
+// Serve static files from React build
+app.use(express.static(path.join(__dirname, '../frontend/build')));
+
+// Fallback: serve index.html for any non-API route
+app.get('*', (req, res) => {
+  if (!req.originalUrl.startsWith('/api')) {
+    res.sendFile(path.join(__dirname, '../frontend/build', 'index.html'));
+  } else {
+    res.status(404).json({
+      success: false,
+      message: `Route ${req.originalUrl} not found`
+    });
+  }
 });
 
 // Global error handler
