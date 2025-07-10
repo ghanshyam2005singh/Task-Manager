@@ -53,8 +53,15 @@ api.interceptors.response.use(
         toast.error('Access forbidden');
         break;
       case 404:
-        toast.error('Resource not found');
-        break;
+  // Only show toast if the request was to your API, not a frontend route
+  if (
+    error.config &&
+    error.config.url &&
+    error.config.url.startsWith(API_BASE_URL)
+  ) {
+    toast.error('Resource not found');
+  }
+  break;
       case 429:
         toast.error('Too many requests. Please try again later.');
         break;
