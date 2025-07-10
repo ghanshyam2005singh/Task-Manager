@@ -23,7 +23,7 @@ app.use(helmet());
 app.use(morgan('combined'));
 app.use(cors({
   origin: process.env.NODE_ENV === 'production' 
-    ? ['https://your-frontend-domain.vercel.app'] 
+    ? ['https://task-manager-rust-rho.vercel.app'] 
     : ['http://localhost:3000'],
   credentials: true
 }));
