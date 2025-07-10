@@ -1,4 +1,5 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
+import toast from 'react-hot-toast';
 import {
   Box,
   Typography,
@@ -7,7 +8,6 @@ import {
   Menu,
   MenuItem,
   Tooltip,
-  Alert,
 } from '@mui/material';
 import {
   MoreVert,
@@ -39,12 +39,31 @@ const TaskItem = ({ task, onEdit, onRefresh }) => {
     onEdit(task);
   };
 
-  const handleDelete = async () => {
+const handleDelete = () => {
     handleMenuClose();
-    if (window.confirm('Are you sure you want to delete this task?')) {
-      await deleteTask(task._id);
-      onRefresh();
-    }
+    toast((t) => (
+      <Box>
+        <Typography>Are you sure you want to delete this task?</Typography>
+        <Box mt={1} display="flex" gap={1}>
+          <button
+            style={{ color: 'white', background: '#d32f2f', border: 'none', padding: '4px 12px', borderRadius: 4, cursor: 'pointer' }}
+            onClick={async () => {
+              await deleteTask(task._id);
+              onRefresh();
+              toast.dismiss(t.id);
+            }}
+          >
+            Delete
+          </button>
+          <button
+            style={{ marginLeft: 8, color: '#333', background: '#eee', border: 'none', padding: '4px 12px', borderRadius: 4, cursor: 'pointer' }}
+            onClick={() => toast.dismiss(t.id)}
+          >
+            Cancel
+          </button>
+        </Box>
+      </Box>
+    ), { duration: 6000 });
   };
 
   const handleToggleStatus = async () => {
@@ -85,13 +104,16 @@ const TaskItem = ({ task, onEdit, onRefresh }) => {
     isAfter(new Date(), parseISO(task.dueDate)) && 
     task.status !== 'completed';
 
+      useEffect(() => {
+    if (isOverdue) {
+      toast.error(`Task "${task.title}" is overdue!`);
+    }
+    // Only show once per mount
+    // eslint-disable-next-line
+  }, [isOverdue, task.title]);
+
   return (
     <Box sx={{ p: 2 }}>
-      {isOverdue && (
-        <Alert severity="warning" sx={{ mb: 1 }}>
-          This task is overdue!
-        </Alert>
-      )}
       
       <Box display="flex" alignItems="flex-start" gap={2}>
         {/* Status Toggle */}

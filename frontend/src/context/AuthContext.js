@@ -90,14 +90,11 @@ export const AuthProvider = ({ children }) => {
     try {
       dispatch({ type: 'AUTH_START' });
       const response = await authService.login(credentials);
-      
-      localStorage.setItem('token', response.data.token);
-      
+      localStorage.setItem('token', response.token);
       dispatch({
         type: 'AUTH_SUCCESS',
-        payload: response.data,
+        payload: response,
       });
-      
       toast.success('Login successful!');
       return { success: true };
     } catch (error) {
@@ -112,14 +109,11 @@ export const AuthProvider = ({ children }) => {
     try {
       dispatch({ type: 'AUTH_START' });
       const response = await authService.register(userData);
-      
-      localStorage.setItem('token', response.data.token);
-      
+      localStorage.setItem('token', response.token);
       dispatch({
         type: 'AUTH_SUCCESS',
-        payload: response.data,
+        payload: response,
       });
-      
       toast.success('Registration successful!');
       return { success: true };
     } catch (error) {

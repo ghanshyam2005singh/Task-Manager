@@ -1,17 +1,11 @@
 const express = require('express');
 const router = express.Router();
+const authController = require('../controllers/authController');
+const auth = require('../middleware/auth');
+const { authLimiter } = require('../middleware/rateLimiter'); // Import the limiter
 
-// Temporary basic routes to prevent server crash
-router.post('/register', (req, res) => {
-  res.json({ message: 'Register route - coming soon' });
-});
-
-router.post('/login', (req, res) => {
-  res.json({ message: 'Login route - coming soon' });
-});
-
-router.get('/profile', (req, res) => {
-  res.json({ message: 'Profile route - coming soon' });
-});
+router.post('/register', authLimiter, authController.register);
+router.post('/login', authLimiter, authController.login);
+router.get('/profile', auth, authController.profile);
 
 module.exports = router;

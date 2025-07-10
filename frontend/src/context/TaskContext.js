@@ -40,13 +40,13 @@ const taskReducer = (state, action) => {
         loading: action.payload,
       };
     case 'SET_TASKS':
-      return {
-        ...state,
-        tasks: action.payload.tasks,
-        pagination: action.payload.pagination,
-        loading: false,
-        error: null,
-      };
+  return {
+    ...state,
+    tasks: Array.isArray(action.payload.tasks) ? action.payload.tasks : [],
+    pagination: action.payload.pagination,
+    loading: false,
+    error: null,
+  };
     case 'ADD_TASK':
       return {
         ...state,

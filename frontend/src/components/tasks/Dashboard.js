@@ -27,9 +27,10 @@ import Loader from '../common/Loader';
 const Dashboard = () => {
   const { user } = useAuth();
   const {
-    tasks,
-    loading,
-    stats,
+    tasks = [],
+  loading,
+  error,
+  stats = {},
     filters,
     pagination,
     fetchTasks,
@@ -40,10 +41,11 @@ const Dashboard = () => {
   const [openTaskForm, setOpenTaskForm] = useState(false);
   const [editingTask, setEditingTask] = useState(null);
 
-  useEffect(() => {
-    fetchTasks();
-    fetchStats();
-  }, [fetchTasks, fetchStats]);
+ useEffect(() => {
+  fetchTasks();
+   fetchStats();
+  // eslint-disable-next-line
+}, []);
 
   const handleCreateTask = () => {
     setEditingTask(null);
@@ -95,6 +97,21 @@ const Dashboard = () => {
     </Card>
   );
 
+  if (error) {
+  return (
+    <Container maxWidth="sm" sx={{ mt: 8 }}>
+      <Paper sx={{ p: 4, textAlign: 'center', color: 'red' }}>
+        <Typography variant="h6" gutterBottom>
+          {error}
+        </Typography>
+        <Typography variant="body2" color="text.secondary">
+          Please try refreshing the page or check your network connection.
+        </Typography>
+      </Paper>
+    </Container>
+  );
+}
+
   if (loading && tasks.length === 0) {
     return <Loader message="Loading dashboard..." />;
   }
@@ -130,13 +147,13 @@ const Dashboard = () => {
           />
         </Grid>
         <Grid item xs={12} sm={6} md={3}>
-          <StatCard
-            title="In Progress"
-            value={stats.byStatus?.['in-progress'] || 0}
-            icon={<Schedule fontSize="large" />}
-            color="info"
-          />
-        </Grid>
+  <StatCard
+    title="Pending"
+    value={stats.byStatus?.['pending'] || 0}
+    icon={<Schedule fontSize="large" />}
+    color="info"
+  />
+</Grid>
         <Grid item xs={12} sm={6} md={3}>
           <StatCard
             title="Overdue"
