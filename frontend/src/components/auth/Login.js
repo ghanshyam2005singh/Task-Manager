@@ -37,10 +37,10 @@ const Login = () => {
   });
 
   useEffect(() => {
-    if (isAuthenticated) {
-      navigate(from, { replace: true });
-    }
-  }, [isAuthenticated, navigate, from]);
+  if (!loading && isAuthenticated) {
+    navigate(from, { replace: true });
+  }
+}, [isAuthenticated, loading, navigate, from]);
 
   const onSubmit = async (data) => {
     const result = await login(data);
