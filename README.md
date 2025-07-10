@@ -287,4 +287,4 @@ This project is licensed under the MIT License.
 - Email: demo@example.com
 - Password: Demo123!
 
-**Live Demo:** [Task Manager App(both frontend and backend deployed)](https://task-manager-rust-rho.vercel.app/login)
+**Live Demo:** [Task Manager App](https://task-manager-rust-rho.vercel.app/login)
