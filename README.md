@@ -131,8 +131,8 @@ task-manager/
 
 1. **Clone the repository**
 ```bash
-git clone https://github.com/yourusername/task-manager-mern.git
-cd task-manager-mern
+git clone https://github.com/ghanshyam2005singh/task-manager.git
+cd task-manager
 ```
 
 2. **Install Backend Dependencies**
@@ -271,7 +271,9 @@ This project is licensed under the MIT License.
 ## 👨‍💻 Author
 
 **Ghanshyam Singh**
+
 - GitHub: [@ghanshyam2005singh](https://github.com/ghanshyam2005singh)
+=======
 - Email: ghanshyam2005singh@gmail.com
 
 ## 🙏 Acknowledgments
