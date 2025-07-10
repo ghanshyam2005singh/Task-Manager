@@ -273,7 +273,6 @@ This project is licensed under the MIT License.
 **Ghanshyam Singh**
 
 - GitHub: [@ghanshyam2005singh](https://github.com/ghanshyam2005singh)
-=======
 - Email: ghanshyam2005singh@gmail.com
 
 ## 🙏 Acknowledgments
