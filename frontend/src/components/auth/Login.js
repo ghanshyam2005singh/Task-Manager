@@ -169,17 +169,6 @@ const Login = () => {
             </Box>
           </Box>
         </Paper>
-
-        {/* Demo Credentials */}
-        <Paper elevation={1} sx={{ mt: 2, p: 2, width: '100%', bgcolor: 'info.light' }}>
-          <Typography variant="h6" gutterBottom>
-            Demo Credentials
-          </Typography>
-          <Typography variant="body2">
-            <strong>Email:</strong> demo@example.com<br />
-            <strong>Password:</strong> Demo123!
-          </Typography>
-        </Paper>
       </Box>
     </Container>
   );
